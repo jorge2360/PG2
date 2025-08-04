@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR with Three.js</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://unpkg.com/@webxr-input-profiles/registry@latest/dist/registry.js"></script>
+    <script src="https://unpkg.com/three/examples/jsm/vr/WebXR.js"></script>
+    <script src="https://cdn.rawgit.com/MrBim/threejs-ar/master/three.ar.js"></script>
+</head>
+<body>
+    <script>
+        let scene, camera, renderer, ar;
+
+        function init() {
+            // Configuración básica de Three.js
+            scene = new THREE.Scene();
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            // Inicializar AR
+            ar = new THREE.ARRenderer(renderer);
+            ar.addEventListener('arready', onARReady);
+            ar.start();
+
+            window.addEventListener('resize', onWindowResize, false);
+        }
+
+        function onARReady() {
+            // Crear el modelo 3D
+            const loader = new THREE.GLTFLoader();
+            loader.load('assets/Stool.glb', function (gltf) {
+                const model = gltf.scene;
+                model.position.set(0, 0, -1); // Ajustar posición inicial
+                scene.add(model);
+            });
+
+            // Configurar un plano para la detección de superficies
+            const geometry = new THREE.PlaneGeometry(1, 1);
+            const material = new THREE.MeshBasicMaterial({ color: 0x0077ff, side: THREE.DoubleSide });
+            const plane = new THREE.Mesh(geometry, material);
+            plane.rotation.x = Math.PI / 2; // Rotar plano para que sea horizontal
+            scene.add(plane);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ar.update();
+            renderer.render(scene, camera);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>

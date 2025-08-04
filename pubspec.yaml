@@ -1,0 +1,53 @@
+name: flutter_application_1
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.2
+
+dependencies:
+  #flutter_unity_widget: ^4.2.1
+  provider: ^6.0.0
+  flutter:
+    sdk: flutter
+  flutter_appauth: ^6.0.7
+  carousel_slider: ^4.0.0
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+  google_sign_in: ^6.0.0
+  camera: ^0.10.0+3
+ # ar_flutter_plugin: ^0.6.0
+ # arcore_flutter_plugin: ^0.1.0
+  webview_flutter: ^4.9.0
+  model_viewer_plus: ^1.5.0
+  vector_math: ^2.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/threejs_ar.html
+    - assets/models/banco.glb
+    - assets/models/mesa.glb
+    - assets/models/sofa.glb
+    - assets/models/banca.glb
+    - assets/logo.png
+    - assets/google_logo.png
+    - assets/default_avatar.jpg
+    - assets/banca/banca1.jpg
+    - assets/banca/banca2.jpg
+    - assets/banca/banca3.jpg
+    - assets/banco/banco1.png
+    - assets/banco/banco2.jpg
+    - assets/banco/banco3.jpg
+    - assets/mesa/mesa1.jpg
+    - assets/mesa/mesa2.jpg
+    - assets/mesa/mesa3.jpg
+    - assets/sofa_3/sofa_3.1.png
+    - assets/sofa_3/sofa_3.2.jpg
+    - assets/sofa_3/sofa_3.3.jpg
