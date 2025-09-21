@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blueAccent, Colors.purpleAccent],
+            colors: [Color(0xFF003087), Color(0xFFF4A261)], // Degradado de azul oscuro a naranja
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -27,6 +27,7 @@ class LoginPage extends StatelessWidget {
             child: SingleChildScrollView(
               child: Card(
                 elevation: 8,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -37,16 +38,31 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        // Añadir el logo
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'assets/logo_cgo.jpg', // Asegúrate de agregar el logo en la carpeta assets
+                            height: 100,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                         const Text(
                           'Iniciar Sesión',
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0052CC)),
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Correo Electrónico',
+                            labelStyle: const TextStyle(color: Color(0xFF0052CC)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFF0052CC)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFFF4A261)),
                             ),
                           ),
                           validator: (value) {
@@ -63,8 +79,14 @@ class LoginPage extends StatelessWidget {
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
+                            labelStyle: const TextStyle(color: Color(0xFF0052CC)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFF0052CC)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFFF4A261)),
                             ),
                           ),
                           obscureText: true,
@@ -84,9 +106,9 @@ class LoginPage extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            backgroundColor: Colors.deepPurple, // Cambiado a un púrpura más oscuro
-                            foregroundColor: Colors.white, // Color de texto blanco
+                            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32), // Aumentado el tamaño del botón
+                            backgroundColor: Color(0xFFF4A261), // Naranja del logo
+                            foregroundColor: Colors.white,
                           ),
                           onPressed: () async {
                             if (formKey.currentState!.validate()) {
@@ -126,7 +148,10 @@ class LoginPage extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => const RegisterPage()),
                             );
                           },
-                          child: const Text('¿No tienes una cuenta? Regístrate'),
+                          child: const Text(
+                            '¿No tienes una cuenta? Regístrate',
+                            style: TextStyle(color: Color(0xFF0052CC)),
+                          ),
                         ),
                       ],
                     ),

@@ -24,10 +24,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: _currentIndex == 0 // Solo mostrar el AppBar en la página de inicio
           ? AppBar(
-              title: const Text('Mi Comercio'),
+              title: Image.asset(
+                'assets/logo_home.png', // Reemplaza el texto con la imagen
+                height: 40, // Ajusta la altura según necesites
+                fit: BoxFit.contain,
+              ),
+              backgroundColor: Color(0xFF003087),
               actions: [
                 IconButton(
-                  icon: const Icon(Icons.notifications),
+                  icon: const Icon(Icons.notifications, color: Color(0xFFFFFFFF)),
                   onPressed: () {},
                 ),
               ],
@@ -53,7 +58,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _currentIndex,
-        selectedItemColor: Colors.blue,
+        selectedItemColor: Color(0xFFF4A261), // Naranja para el elemento seleccionado
+        unselectedItemColor: Color(0xFF0052CC), // Azul medio para elementos no seleccionados
+        backgroundColor: Color(0xFF003087), // Azul oscuro como fondo
         onTap: (index) {
           setState(() {
             _currentIndex = index; // Cambiar el índice actual

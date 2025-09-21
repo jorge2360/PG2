@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blueAccent, Colors.purpleAccent],
+            colors: [Color(0xFF003087), Color(0xFFF4A261)], // Degradado de azul oscuro a naranja
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -64,6 +64,7 @@ class _RegisterPageState extends State<RegisterPage> {
             child: SingleChildScrollView(
               child: Card(
                 elevation: 8,
+                color: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -74,16 +75,31 @@ class _RegisterPageState extends State<RegisterPage> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        // Logo con bordes redondeados
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(12),
+                          child: Image.asset(
+                            'assets/logo_cgo.jpg', // Asegúrate de agregar el logo en la carpeta assets
+                            height: 100,
+                          ),
+                        ),
+                        const SizedBox(height: 20),
                         const Text(
                           'Registro',
-                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Color(0xFF0052CC)),
                         ),
                         const SizedBox(height: 20),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Correo Electrónico',
+                            labelStyle: const TextStyle(color: Color(0xFF0052CC)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFF0052CC)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFFF4A261)),
                             ),
                           ),
                           validator: (value) {
@@ -100,8 +116,14 @@ class _RegisterPageState extends State<RegisterPage> {
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Contraseña',
+                            labelStyle: const TextStyle(color: Color(0xFF0052CC)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFF0052CC)),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              borderSide: const BorderSide(color: Color(0xFFF4A261)),
                             ),
                           ),
                           obscureText: true,
@@ -121,8 +143,8 @@ class _RegisterPageState extends State<RegisterPage> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            padding: const EdgeInsets.symmetric(vertical: 12),
-                            backgroundColor: Colors.deepPurple,
+                            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 32), // Botón más grande
+                            backgroundColor: Color(0xFFF4A261), // Naranja del logo
                             foregroundColor: Colors.white,
                           ),
                           onPressed: () async {
@@ -194,7 +216,10 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: () {
                             Navigator.pop(context);
                           },
-                          child: const Text('¿Ya tienes una cuenta? Inicia Sesión'),
+                          child: const Text(
+                            '¿Ya tienes una cuenta? Inicia Sesión',
+                            style: TextStyle(color: Color(0xFF0052CC)),
+                          ),
                         ),
                       ],
                     ),
