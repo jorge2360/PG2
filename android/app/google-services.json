@@ -2,7 +2,7 @@
   "project_info": {
     "project_number": "536236797897",
     "project_id": "umg-ra",
-    "storage_bucket": "umg-ra.appspot.com"
+    "storage_bucket": "umg-ra.firebasestorage.app"
   },
   "client": [
     {
@@ -29,6 +29,13 @@
             {
               "client_id": "536236797897-pj6mkr5rt3hd5o3dvhcnmb3toq5pljjt.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "536236797897-uodcbo8br10650b6a7mj3m6pr1b2l9an.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
             }
           ]
         }

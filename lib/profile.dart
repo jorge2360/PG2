@@ -7,7 +7,6 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Suponiendo que obtienes el usuario actual
     User? user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(

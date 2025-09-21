@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentIndex = 0;
+  final TextEditingController _searchController = TextEditingController();
 
   final List<Widget> _pages = const [
     ProductListPage(), // Página de productos
@@ -20,13 +21,19 @@ class _HomePageState extends State<HomePage> {
   ];
 
   @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _currentIndex == 0 // Solo mostrar el AppBar en la página de inicio
+      appBar: _currentIndex == 0
           ? AppBar(
               title: Image.asset(
-                'assets/logo_home.png', // Reemplaza el texto con la imagen
-                height: 40, // Ajusta la altura según necesites
+                'assets/logo_home.png',
+                height: 40,
                 fit: BoxFit.contain,
               ),
               backgroundColor: Color(0xFF003087),
@@ -37,10 +44,24 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             )
-          : null, // Sin AppBar para otras páginas
-      body: IndexedStack(
-        index: _currentIndex,
-        children: _pages,
+          : null,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Color(0xFF003087), Color(0xFFF4A261)],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: IndexedStack(
+          index: _currentIndex,
+          children: _pages.map((page) {
+            if (page is ProductListPage) {
+              return ProductListPage(initialSearchQuery: _searchController.text);
+            }
+            return page;
+          }).toList(),
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
@@ -58,12 +79,12 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
         currentIndex: _currentIndex,
-        selectedItemColor: Color(0xFFF4A261), // Naranja para el elemento seleccionado
-        unselectedItemColor: Color(0xFF0052CC), // Azul medio para elementos no seleccionados
-        backgroundColor: Color(0xFF003087), // Azul oscuro como fondo
+        selectedItemColor: Color(0xFFF4A261),
+        unselectedItemColor: Color(0xFF0052CC),
+        backgroundColor: Color(0xFF003087),
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Cambiar el índice actual
+            _currentIndex = index;
           });
         },
       ),
